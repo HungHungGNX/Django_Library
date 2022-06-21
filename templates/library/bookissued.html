@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Ollie landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Book Issued</title>
+
+    <!-- font icons -->
+    <link rel="stylesheet" href="{% static 'themify-icons/css/themify-icons.css'%}">
+    <link rel="stylesheet" href="{%static 'css/ollie.css'%}">
+    <style>
+        body {
+            background-color: #a8daee !important;
+        }
+        
+        html {
+            background-color: #F1FAFB !important;
+        }
+        
+        .section {
+            padding: 60px 10px;
+            margin-top: 2.6rem !important;
+        }
+        
+        .col-lg-4 {
+            margin-top: 15px !important;
+            border-radius: 10px !important;
+        }
+        
+        .text-center {
+            text-align: center !important;
+            justify-content: center !important;
+        }
+    </style>
+
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+
+
+    {% include "library/navbaradminnew.html" %}
+
+
+    <section class="section">
+        <div class="container">
+            <h6 class="xs-font mb-0">Hello {{user.first_name}}</h6>
+            <h3 class="section-title mb-4">Option</h3>
+
+            <div class="row text-center">
+                <div class="col-lg-4 issuenewbook">
+                    <a href="javascript:void(0)" class="card border-0 text-dark">
+                        <img class="card-img-top" src="{% static 'images/img-7'%}.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page">
+                        <span class="card-body">
+                        <h4 class="title mt-4">Issue New Book</h4>
+                        <p class="xs-font">Lorem ipsum dolor sit amet</p>
+                    </span>
+                    </a>
+                </div>
+                <div class="col-lg-4 viewissuedbook">
+                    <a href="javascript:void(0)" class="card border-0 text-dark">
+                        <img class="card-img-top" src="{% static 'images/img-7'%}.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page">
+                        <span class="card-body">
+                        <h4 class="title mt-4">View Issued Book</h4>
+                        <p class="xs-font">Lorem ipsum dolor sit amet</p>
+                    </span>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const addBook = document.querySelector('.addbook');
+        const viewavaliablebook = document.querySelector('.viewavaliablebook');
+        const issuenewbook = document.querySelector('.issuenewbook');
+        const viewissuedbook = document.querySelector('.viewissuedbook');
+        const viewstudent = document.querySelector('.viewstudent');
+
+        issuenewbook.addEventListener('click', function() {
+            window.location.href = 'issuebook'
+        })
+        viewissuedbook.addEventListener('click', function() {
+            window.location.href = 'viewissuedbook'
+        })
+    </script>
+</body>
+
+</html>

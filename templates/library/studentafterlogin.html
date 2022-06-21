@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Ollie landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Home Student</title>
+
+    <!-- font icons -->
+    <link rel="stylesheet" href="{% static 'themify-icons/css/themify-icons.css'%}">
+    <link rel="stylesheet" href="{%static 'css/ollie.css'%}">
+    <style>
+        body {
+            background-color: #F1FAFB !important;
+        }
+    </style>
+
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+
+    {% include "library/navbarstudent.html" %}
+
+
+    <section class="section">
+        <div class="container">
+            <h6 class="xs-font mb-0">Hello {{user.first_name}}</h6>
+            <h3 class="section-title mb-4">Option</h3>
+
+            <div class="row text-center">
+                <div class="col-lg-4 viewcontactbystudent">
+                    <a href="javascript:void(0)" class="card border-0 text-dark">
+                        <img class="card-img-top" src="{% static 'images/img-5'%}.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page">
+                        <span class="card-body">
+                            <h4 class="title mt-4">View List Question</h4>
+                            <p class="xs-font">Show list question</p>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-lg-4 view-issue-book">
+                    <a href="javascript:void(0)" class="card border-0 text-dark">
+                        <img class="card-img-top" src="{% static 'images/img-6'%}.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page">
+                        <span class="card-body">
+                            <h4 class="title mt-4">View Issues Book</h4>
+                            <p class="xs-font">View borrowed books</p>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-lg-4 contact">
+                    <a href="javascript:void(0)" class="card border-0 text-dark">
+                        <img class="card-img-top" src="{% static 'images/img-7'%}.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page">
+                        <span class="card-body">
+                            <h4 class="title mt-4">Send Question</h4>
+                            <p class="xs-font">Send a question to the library</p>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+
+    <script src="assets/vendors/owl-carousel/js/owl.carousel.js"></script>
+
+
+ 
+    <script src="assets/js/Ollie.js"></script> -->
+    <script>
+        const view_issure_book = document.querySelector('.view-issue-book');
+        const contact = document.querySelector('.contact');
+        const viewcontactbystudent = document.querySelector('.viewcontactbystudent');
+
+        view_issure_book.addEventListener('click', function(e) {
+            window.location.href = 'viewissuedbookbystudent'
+        })
+        contact.addEventListener('click', function(e) {
+            window.location.href = 'contactstudent'
+        })
+        viewcontactbystudent.addEventListener('click', function(e) {
+            window.location.href = 'viewcontactbystudent'
+        })
+    </script>
+</body>
+
+</html>

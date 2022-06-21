@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <title>Admin Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/styleadminlogin.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'images/bgadminlogin.jpg' %}") !important;
+        }
+        
+        .btn.btn-success.btn-lg {
+            border-radius: 34px !important;
+            width: 100%;
+            background: #fbceb5 !important;
+            padding: 13px;
+            color: #000;
+            border: 1px solid #fbceb5;
+        }
+    </style>
+</head>
+
+<body class="img js-fullheight">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Login Admin</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <h3 class="mb-4 text-center">Have an account?</h3>
+                        <form method="post" class="form-horizontal">
+
+                            {% csrf_token %} {% for field in form %}
+                            <div class="form-group text-center">
+                                <div class="col-xs-8">
+                                    {{ field }}
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <div class="form-group text-center">
+                                <div class="col-xs-8 col-xs-offset-4">
+                                    <button type="submit" class="btn btn-success btn-lg" style="border-radius: 0%;">Sign In</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- <div class="text-center">Do not have account? <a href="adminsignup">Contact Admin</a></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
+    <!-- <script src="js/popper.js"></script> -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        (function($) {
+
+            "use strict";
+
+            var fullHeight = function() {
+
+                $('.js-fullheight').css('height', $(window).height());
+                $(window).resize(function() {
+                    $('.js-fullheight').css('height', $(window).height());
+                });
+
+            };
+            fullHeight();
+
+            $(".toggle-password").click(function() {
+
+                $(this).toggleClass("fa-eye fa-eye-slash");
+                var input = $($(this).attr("toggle"));
+                if (input.attr("type") == "password") {
+                    input.attr("type", "text");
+                } else {
+                    input.attr("type", "password");
+                }
+            });
+
+        })(jQuery);
+    </script>
+    <script>
+        const elementInputs = document.querySelectorAll(".col-xs-8 input");
+
+        for (var item of elementInputs) {
+            item.classList.add("form-control")
+        }
+        elementInputs[0].setAttribute("placeholder", "User Name");
+        elementInputs[1].setAttribute("placeholder", "Password");
+    </script>
+</body>
+
+</html>

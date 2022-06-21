@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Signup Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="{% static 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="{% static 'css/stylesignupstudent.css'%}">
+    <style type="text/css">
+        input,
+        textarea,
+        select {
+            font-family: "Muli-SemiBold";
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            background-color: #FF97A4;
+            color: #fff;
+            outline: none;
+            border: 1px solid #fff !important;
+        }
+        
+        .form-inner {
+            padding-top: 3.5vh;
+        }
+        
+        .wrapper .image-holder {
+            width: 59.9%;
+        }
+        
+        .wrapper .form-inner {
+            width: 40.1%;
+        }
+        
+        label {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        button {
+            border-radius: 10px !important;
+        }
+        
+        form {
+            width: 88%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="image-holder">
+            <img src="{% static 'images/registration-form-8.jpg'%}" alt="">
+        </div>
+        <div class="form-inner">
+            <form method="post">
+                {% csrf_token %} {% for field in form1 %}
+                <div class="form-group text-center">
+                    <label class="control-label col-xs-4">{{ field.label_tag }}</label>
+                    <div class="col-xs-8">
+                        {{ field }}
+                    </div>
+                </div>
+                {% endfor %} {% for field in form2 %}
+                <div class="form-group text-center">
+                    <label class="control-label col-xs-4">{{ field.label_tag }}</label>
+                    <div class="col-xs-8">
+                        {{ field }}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="form-group text-center">
+                    <div class="col-xs-8 col-xs-offset-4">
+                        <button type="submit" class="btn btn-primary btn-lg" style="border-radius: 0%;">Sign Up</button>
+                    </div>
+                </div>
+                <div class="text-center" style="margin-top:20px;text-align: center;">Already have an account? <a href="studentlogin" style="color:rgb(94, 231, 233)">Login here</a></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery.form-validator.min.js'%}"></script>
+    <script src="{% static 'js/mainsignupstudent.js'%}"></script>
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+
+<head>
+    <style media="screen">
+        table.redTable {
+            border: 2px solid #607d8b;
+            background-color: #EEE7DB;
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        
+        table.redTable td,
+        table.redTable th {
+            border: 1px solid #AAAAAA;
+            padding: 3px 2px;
+        }
+        
+        table.redTable tbody td {
+            font-size: 13px;
+        }
+        
+        table.redTable tr:nth-child(even) {
+            background: #ffffff;
+        }
+        
+        table.redTable thead {
+            background: #607d8b;
+        }
+        
+        table.redTable thead th {
+            font-size: 19px;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-align: center;
+            border-left: 2px solid #607d8b;
+        }
+        
+        table.redTable thead th:first-child {
+            border-left: none;
+        }
+        
+        table.redTable tfoot {
+            font-size: 13px;
+            font-weight: bold;
+            color: #FFFFFF;
+            background: #607d8b;
+        }
+        
+        table.redTable tfoot td {
+            font-size: 13px;
+        }
+        
+        table.redTable tfoot .links {
+            text-align: right;
+        }
+        
+        table.redTable tfoot .links a {
+            display: inline-block;
+            background: #FFFFFF;
+            color: #607d8b;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+        
+        .p-3.mb-2.bg-success.text-white {
+            margin-top: 132px;
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+        
+        .container {
+            margin-top: 20px;
+        }
+        
+        #myInput {
+            background-image: url("{%static 'images/searchicon.png'%}");
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+            border-radius: 10px;
+        }
+        
+        .container-edit-delete {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        td a {
+            width: 40%;
+            margin: 0 10px;
+            border-radius: 10px;
+        }
+        
+        .btn-sm,
+        .btn-group-sm>.btn {
+            padding: 0.3rem 0.5rem !important;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.6rem !important;
+            font-weight: bold !important;
+            color: #FFFFFF !important;
+        }
+    </style>
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal .cookiesContent {
+            width: 464px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            color: #000;
+            text-align: center;
+            border-radius: 20px;
+            padding: 30px 30px 70px;
+            animation: modalAnimation ease 0.8s;
+        }
+        
+        .modal button.modal-btn-close {
+            width: 30px;
+            font-size: 20px;
+            color: #c0c5cb;
+            align-self: flex-end;
+            background-color: transparent;
+            border: none;
+            margin-bottom: 10px;
+        }
+        
+        .modal button.modal-btn-close:hover {
+            color: #6ba3e3;
+            cursor: pointer;
+        }
+        
+        .modal img {
+            width: 82px;
+            margin-bottom: 15px;
+        }
+        
+        .modal p {
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+        
+        .modal button.accept {
+            background-color: #ed6755;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            padding: 14px;
+            font-size: 16px;
+            color: white;
+            box-shadow: 0px 6px 18px -5px rgba(237, 103, 85, 1);
+            margin-top: 20px;
+        }
+        
+        .modal button.accept:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        
+        .open {
+            display: none !important;
+        }
+        
+        @keyframes modalAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(-200px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0px)
+            }
+        }
+        
+        .btn-sm {
+            padding: 10px !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    {% include "library/navbaradminnew.html" %}
+    <div class="container-header">
+        <h3 class="p-3 mb-2 bg-success text-white" style='font-size: 30px;text-align:center;'>Question Student</h3>
+    </div>
+
+    {% if listquestion%}
+    <div class="container">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+        <table class="table table-hover table-condensed table-striped table-bordered" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>Name Question</th>
+                    <th>Enrollment</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Answer</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for question in listquestion %}
+                <tr>
+                    <td>{{question.name}}</td>
+                    <td>{{question.enrollment}}</td>
+                    <td>{{question.email}}</td>
+                    <td>{{question.message}}</td>
+                    <td>{{question.answer}}</td>
+                    <td>
+                        <div class="container-edit-delete">
+                            <a class="btn btn-success btn-sm" href="/feed_back/{{ question.id }}" style="background:#5BC0DE;border:1px solid #5BC0DE;padding-right: 11px !important;">
+                                REPLY</a>
+                            <a class="btn btn-danger btn-sm" onclick="return confirm('Do you really want to delete this item!')" href="/delete_question/{{ question.id }}">DELETE</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {%else%}
+    <div class="modal">
+        <div class="cookiesContent " id="cookiesPopup ">
+            <button class="modal-btn-close ">✖</button>
+            <img src="https://cdn-icons-png.flaticon.com/512/1047/1047711.png " alt="cookies-img " />
+            <p>Status.</p>
+            <button class="accept btn-admin ">No Question</button>
+        </div>
+    </div>
+    {%endif%}
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector(".table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        const modal = document.querySelector('.modal')
+
+        modal.addEventListener('click', function(e) {
+            modal.classList.add('open');
+        })
+    </script>
+
+
+</body>
+
+</html>
